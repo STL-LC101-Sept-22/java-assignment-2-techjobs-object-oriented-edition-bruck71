@@ -24,18 +24,6 @@ public class JobTest {
     }
 
     //TODO: Test the full Job Constructor
-    //instantiate a testJob Job object to be tested
-//    @Before
-//    public void createJobObject() {
-//        Job testJob = new Job(
-//                "Product Tester",
-//                new Employer("Acme"),
-//                new Location("Desert"),
-//                new PositionType("Quality control"),
-//                new CoreCompetency("Persistence")
-//        );
-//    }
-    //TODO: Test each parameter
     @Test
     public void testJobConstructorSetsAllFields() {
         String spec = "a job Object is properly instantiated with each parameter (Employer, Location, Position Type, Core Competency).";
@@ -76,7 +64,7 @@ public class JobTest {
         assertTrue(testJob.getCoreCompetency() instanceof CoreCompetency);
 
     }
-
+    //TODO: Test the custom equals method
     @Test
     public void testJobsForEquality() {
         String spec = "custom equals method compares Jobs on id number only";
@@ -99,4 +87,52 @@ public class JobTest {
 
     }
 
+    //TODO: Test custom toString method by checking that the string starts and ends with a blank line.
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        String spec = "Custom toString method should start and end with new line character";
+        Job job = new Job(
+                "Product Tester",
+                new Employer("Acme"),
+                new Location("Desert"),
+                new PositionType("Quality control"),
+                new CoreCompetency("Persistence")
+        );
+        char expectedBeginningChar = '\n';
+        char expectedEndChar = '\n';
+        char actualFirstChar = job.toString().charAt(0);
+        char actualLastChar = job.toString().charAt(job.toString().length()-1);
+        assertEquals(expectedBeginningChar, actualFirstChar);
+        assertEquals(expectedEndChar, actualLastChar);
+    }
+
+    //TODO: Test custom toString method by checking the proper labels and values.
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        String spec = "Custom toString method should properly display labels and values";
+        //"Web Developer", "LaunchCode", "StL", "Back-end developer", "Java"
+        Job job = new Job("Product Tester", new Employer("LaunchCode"), new Location("StL"), new PositionType("Back-end developer"), new CoreCompetency("Java"));
+        String expected = "\nID: " + job.getId() +
+                "\nName: Product Tester" +
+                "\nEmployer: LaunchCode" +
+                "\nLocation: StL" +
+                "\nPosition Type: Back-end developer" +
+                "\nCore Competency: Java\n";
+        String actual = job.toString();
+        assertEquals(expected, actual);
+    }
+
+    //TODO: Test custom toString method by checking empty fields response of "Data not available" after the label
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job = new Job("Web Developer", new Employer(""), new Location("StL"), new PositionType(""), new CoreCompetency("Java"));
+        String expected = "\nID: " + job.getId() +
+                "\nName: Web Developer" +
+                "\nEmployer: Data not available" +
+                "\nLocation: StL" +
+                "\nPosition Type: Data not available" +
+                "\nCore Competency: Java\n";
+        String actual = job.toString();
+        assertEquals(expected, actual);
+    }
 }

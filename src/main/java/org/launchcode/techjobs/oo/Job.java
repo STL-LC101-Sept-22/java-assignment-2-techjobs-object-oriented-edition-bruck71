@@ -47,6 +47,51 @@ public class Job {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        //Try looping through instead of testing each class individually
+        StringBuilder aName = new StringBuilder();
+        StringBuilder aEmployer = new StringBuilder();
+        StringBuilder aLocation = new StringBuilder();
+        StringBuilder aPositionType = new StringBuilder();
+        StringBuilder aCoreCompetency = new StringBuilder();
+        if(this.name == "") {
+            aName.append("Data not available");
+        } else {
+            aName.append(this.name);
+        }
+        if(this.getEmployer().getValue() == "") {
+            aEmployer.append("Data not available");
+        } else {
+            aEmployer.append(this.getEmployer());
+        }
+
+        if(this.getLocation().getValue() == "") {
+            aLocation.append("Data not available");
+        } else {
+            aLocation.append(this.getLocation());
+        }
+
+        if(this.getPositionType().getValue() == "") {
+            aPositionType.append("Data not available");
+        } else {
+            aPositionType.append(this.getPositionType());
+        }
+
+        if(this.getCoreCompetency().getValue() == "") {
+            aCoreCompetency.append("Data not available");
+        } else {
+            aCoreCompetency.append(this.getCoreCompetency());
+        }
+
+        return "\nID: " + this.id +
+                "\nName: " + aName +
+                "\nEmployer: " + aEmployer +
+                "\nLocation: " + aLocation +
+                "\nPosition Type: " + aPositionType +
+                "\nCore Competency: " + aCoreCompetency +
+                "\n";
+    }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
