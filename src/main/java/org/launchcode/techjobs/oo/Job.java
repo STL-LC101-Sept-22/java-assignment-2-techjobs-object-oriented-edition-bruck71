@@ -55,30 +55,37 @@ public class Job {
         StringBuilder aLocation = new StringBuilder();
         StringBuilder aPositionType = new StringBuilder();
         StringBuilder aCoreCompetency = new StringBuilder();
-        if(this.name == "") {
+
+        //Bonus Step 4:  If a Job contains data only for the id field return OOPS! This job does not seem to exist.
+        if (this.name.length() == 0  && this.getEmployer().getValue().length() == 0  && this.getLocation().getValue().length() == 0  && this.getPositionType().getValue().length() == 0 && this.getCoreCompetency().getValue().length() == 0 ) {
+            return "OOPS! This job does not seem to exist.";
+        }
+
+        //Conditionals for toString Task 3.
+        if(this.name .length() == 0) {
             aName.append("Data not available");
         } else {
             aName.append(this.name);
         }
-        if(this.getEmployer().getValue() == "") {
+        if(this.getEmployer().getValue().length() == 0) {
             aEmployer.append("Data not available");
         } else {
             aEmployer.append(this.getEmployer());
         }
 
-        if(this.getLocation().getValue() == "") {
+        if(this.getLocation().getValue().length() == 0) {
             aLocation.append("Data not available");
         } else {
             aLocation.append(this.getLocation());
         }
 
-        if(this.getPositionType().getValue() == "") {
+        if(this.getPositionType().getValue() .length() == 0) {
             aPositionType.append("Data not available");
         } else {
             aPositionType.append(this.getPositionType());
         }
 
-        if(this.getCoreCompetency().getValue() == "") {
+        if(this.getCoreCompetency().getValue() .length() == 0) {
             aCoreCompetency.append("Data not available");
         } else {
             aCoreCompetency.append(this.getCoreCompetency());

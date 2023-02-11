@@ -135,4 +135,13 @@ public class JobTest {
         String actual = job.toString();
         assertEquals(expected, actual);
     }
+
+    //TODO: BONUS** Test custom toString method's response to all empty label fields
+    @Test
+    public void testToStringHandlesAllEmptyFields() {
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        String expected = "OOPS! This job does not seem to exist.";
+        String actual = job.toString();
+        assertEquals(expected, actual);
+    }
 }
